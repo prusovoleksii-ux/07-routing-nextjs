@@ -45,10 +45,10 @@ export default function NotesClient() {
             </header>
             {data && data.notes.length > 0 && 
             <NoteList notes={data.notes} />}
-            {isModalOpen &&
+            {/* {isModalOpen &&
             <Modal onClose={closeModal}>
                 <NoteForm onClose={closeModal}/>
-            </Modal>}
+            </Modal>} */}
         </div>
     );
 }
