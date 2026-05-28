@@ -1,8 +1,8 @@
 'use client';
 
 import css from './NotesPage.module.css'
-//import Modal from "@/components/Modal/Modal";
-//import NoteForm from "@/components/NoteForm/NoteForm";
+import Modal from "@/components/Modal/Modal";
+import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -14,7 +14,7 @@ import { useDebouncedCallback } from "use-debounce";
 export default function NotesClient() {
     const [query, setQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    //const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const debouncedSetQuery = useDebouncedCallback((search: string) => {
         setQuery(search)
@@ -28,7 +28,7 @@ export default function NotesClient() {
     });
     const totalPages = data?.totalPages ?? 0;
 
-    //const closeModal = () => setIsModalOpen(false);
+    const closeModal = () => setIsModalOpen(false);
 
     return (
         <div className={css.app}>
@@ -45,10 +45,10 @@ export default function NotesClient() {
             </header>
             {data && data.notes.length > 0 && 
             <NoteList notes={data.notes} />}
-            {/* {isModalOpen &&
+            {isModalOpen &&
             <Modal onClose={closeModal}>
                 <NoteForm onClose={closeModal}/>
-            </Modal>} */}
+            </Modal>}
         </div>
     );
 }

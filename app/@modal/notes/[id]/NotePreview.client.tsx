@@ -31,7 +31,7 @@ const NotePreviewClient = () => {
   };
 
   return (
-    <Modal>
+    <Modal onClose={handleGoBack}>
     <button onClick={handleGoBack}>Back</button>
     <div className={css.container}>
       <div className={css.item}>
