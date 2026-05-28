@@ -8,6 +8,19 @@ export interface Resp {
   totalPages: number;
 }
 
+export const getNotes = async (categoryId: string | undefined) => {
+
+  const res = await axios.get<Resp>(url, {
+    params: { 
+      tag: categoryId,
+     },
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+    }
+  });
+  return res.data;
+};
+
 export async function fetchNotes(query: string, currentPage: number): Promise<Resp> {
   const res = await axios.get<Resp>(url, {
     params: {

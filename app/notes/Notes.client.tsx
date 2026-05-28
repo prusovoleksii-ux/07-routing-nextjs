@@ -44,8 +44,7 @@ export default function NotesClient() {
                 <button className={css.button} onClick={() => setIsModalOpen(true)}>Create note +</button>
             </header>
             {data && data.notes.length > 0 && 
-            <NoteList notes={data.notes} />
-            }
+            <NoteList notes={data.notes} />}
             {isModalOpen &&
             <Modal onClose={closeModal}>
                 <NoteForm onClose={closeModal}/>

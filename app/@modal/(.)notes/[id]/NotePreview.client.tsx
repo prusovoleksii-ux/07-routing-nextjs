@@ -1,15 +1,16 @@
-"use client";
+'use client'
 
-import css from "./NoteDetails.module.css"
+import css from './NotePreview.module.css';
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from 'next/navigation';
 import { fetchNoteById } from "@/lib/api";
 import { useRouter } from 'next/navigation';
+import Modal from '@/components/Modal/Modal';
 
 
-const NoteDetailsClient = () => {
+const NotePreviewClient = () => {
 	const { id } = useParams<{ id: string }>();
-  const router = useRouter();
+    const router = useRouter();
 
 
   const { data: note, isLoading, error } = useQuery({
@@ -30,7 +31,7 @@ const NoteDetailsClient = () => {
   };
 
   return (
-    <>
+    <Modal>
     <button onClick={handleGoBack}>Back</button>
     <div className={css.container}>
       <div className={css.item}>
@@ -42,8 +43,8 @@ const NoteDetailsClient = () => {
           <p className={css.date}>{note.createdAt}</p>
       </div>
     </div>
-    </>
+    </Modal>
   );
 };
 
-export default NoteDetailsClient;
+export default NotePreviewClient;
