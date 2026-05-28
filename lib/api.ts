@@ -34,6 +34,24 @@ export async function fetchNotes(query: string, currentPage: number): Promise<Re
   return res.data;
 }
 
+export async function fetchNotesFiltered(
+  query: string,
+  page: number,
+  categoryId: string | undefined
+): Promise<Resp> {
+  const res = await axios.get<Resp>(url, {
+    params: {
+      search: query,
+      page,
+      tag: categoryId,
+    },
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+    },
+  });
+  return res.data;
+}
+
 export const fetchNoteById = async (id: string) => {
   const res = await axios.get<Note>(`${url}/${id}`, 
     {
