@@ -6,7 +6,7 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
-import { fetchNotesFiltered } from "@/lib/api";
+import { getNotes } from "@/lib/api";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -27,7 +27,11 @@ export default function NotesClient({ category }: Props) {
 
   const { data, isSuccess } = useQuery({
     queryKey: ["notes", query, currentPage, category],
-    queryFn: () => fetchNotesFiltered(query, currentPage, category),
+    queryFn: () => getNotes({
+                        search: query,
+                        page: currentPage,
+                        tag: category,
+                    }),
     placeholderData: keepPreviousData,
   });
 

@@ -24,10 +24,7 @@ const NotePreviewClient = () => {
   if (error || !note) return <p>Something went wrong.</p>;
 
   const handleGoBack = () => {
-      const isSure = confirm('Are you sure?');
-    if (isSure) {
-      router.back();
-    }
+    router.back();
   };
 
   return (
